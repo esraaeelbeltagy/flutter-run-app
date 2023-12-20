@@ -22,7 +22,7 @@ class GetStarted extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 510,
+              top: 500,
               left: 50,
               child: IntrinsicHeight(
                 child: Column(

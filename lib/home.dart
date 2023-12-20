@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sheet/add_address.dart';
 import 'package:flutter_sheet/history.dart';
 import 'package:flutter_sheet/verfiy_email.dart';
 
@@ -34,6 +35,7 @@ class HomeScreen extends StatelessWidget {
               ListView.separated(
                 padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: history.length,
                 separatorBuilder: (BuildContext context, int index) =>
                     const SizedBox(
@@ -77,6 +79,7 @@ class DownContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
+                  flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: Column(
@@ -136,14 +139,18 @@ class DownContainer extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Image.asset(
-                    'assets/images/store/group2.png',
+                Expanded(
+                  flex: 1,
+                  child: Container(
                     // width: 194,
                     height: 111,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: Image.asset(
+                              'assets/images/store/group2.png',
+                            ).image,
+                            fit: BoxFit.cover)),
                   ),
                 )
               ],
@@ -152,9 +159,9 @@ class DownContainer extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 textAlign: TextAlign.left,
                 'History',
@@ -193,7 +200,7 @@ class UpConttainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topRight,
               end: AlignmentDirectional.bottomEnd,
               colors: [
@@ -228,10 +235,10 @@ class UpConttainer extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         textAlign: TextAlign.left,
                         'Hello !',
@@ -254,7 +261,12 @@ class UpConttainer extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AddAddress()),
+                      );
+                    },
                     child:
                         Image.asset('assets/images/direct-notification.png')),
                 const SizedBox(
@@ -278,13 +290,13 @@ class UpConttainer extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
                           children: [
                             Expanded(
                               child: Row(
-                                children: const [
+                                children: [
                                   Text(
                                     textAlign: TextAlign.left,
                                     '14,000 / ',
@@ -315,7 +327,7 @@ class UpConttainer extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const Text(
+                            Text(
                               textAlign: TextAlign.right,
                               'Level 5',
                               style: TextStyle(
@@ -377,11 +389,11 @@ class UpConttainer extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             textAlign: TextAlign.left,
                             '26 May',
@@ -418,19 +430,22 @@ class UpConttainer extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CircularPercentIndicator(
-                      radius: 35.0,
-                      startAngle: 210,
-                      // animation: true,
-                      //animationDuration: 1200,
-                      lineWidth: 5.0,
-                      percent: 0.4,
-                      center: Row(
-                        children: [
-                          //Image.asset('assets/images/ic_steps', width: 11,height: 15, fit:BoxFit.fitWidth),
-                          //Icon(Icons.run_circle_outlined),
-                          Expanded(
-                            child: Column(
+                    Container(
+                      alignment: Alignment.center,
+                      child: CircularPercentIndicator(
+                        radius: 35.0,
+                        startAngle: 210,
+                        // animation: true,
+                        //animationDuration: 1200,
+                        lineWidth: 5.0,
+                        percent: 0.4,
+                        center: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/ic_steps.png',
+                            ),
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -448,8 +463,8 @@ class UpConttainer extends StatelessWidget {
                                   child: Container(
                                     height: .5,
                                     width: 26,
-                                    decoration:
-                                        BoxDecoration(color: Colors.white),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white),
                                   ),
                                 ),
                                 const Text(
@@ -463,12 +478,12 @@ class UpConttainer extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        //circularStrokeCap: CircularStrokeCap.butt,
+                        backgroundColor: Colors.white10,
+                        progressColor: Colors.pink,
                       ),
-                      //circularStrokeCap: CircularStrokeCap.butt,
-                      backgroundColor: Colors.white10,
-                      progressColor: Colors.pink,
                     ),
                   ],
                 ),
@@ -508,7 +523,7 @@ class UpConttainer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('assets/images/steps.png'),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             const Text(
@@ -552,10 +567,10 @@ class UpConttainer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('assets/images/coin.png'),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
+                            const Text(
                               textAlign: TextAlign.left,
                               'Earned Points',
                               style: TextStyle(
@@ -570,7 +585,7 @@ class UpConttainer extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
           ],

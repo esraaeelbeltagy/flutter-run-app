@@ -116,6 +116,7 @@ class StoreScreen extends StatelessWidget {
               SizedBox(
                 height: 190,
                 child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   itemCount: lista3.length,
                   shrinkWrap: true,
@@ -131,9 +132,9 @@ class StoreScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     textAlign: TextAlign.left,
                     'Popular',
@@ -159,20 +160,27 @@ class StoreScreen extends StatelessWidget {
                 height: 10,
               ),
               SizedBox(
-                height: 200,
+                height: 220,
                 child: GridView.builder(
+                  
+                  physics: const NeverScrollableScrollPhysics(),
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   itemCount: 2,
                   shrinkWrap: true,
+
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount:
                         lista4.length, // number of items in each row
                     mainAxisSpacing: 15.0, // spacing between rows
                     crossAxisSpacing: 15.0, // spacing between columns
+                    childAspectRatio: 6/7,
                   ),
                   itemBuilder: (context, index) =>
                       ItemGridTwo(gridStore2: lista4[index]),
                 ),
+              ),
+             const  SizedBox(
+                height: 50,
               )
             ]),
           ),
@@ -192,6 +200,7 @@ class ItemList2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.centerLeft,
       height: 125,
       width: 300,
       decoration: BoxDecoration(
@@ -201,17 +210,18 @@ class ItemList2 extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
+              flex: 2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                     storeList.title ?? '',
                     style: const TextStyle(
                       color: Colors.white,
@@ -223,20 +233,23 @@ class ItemList2 extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                     storeList.subTitle ?? '',
                     style: const TextStyle(
                       color: Color(0xffFFFFFF),
                       fontSize: 13,
                       fontWeight: FontWeight.w300,
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
-            Image.asset(
-              storeList.image ?? '',
-              fit: BoxFit.cover,
+            Expanded(
+              flex: 1,
+              child: Image.asset(
+                storeList.image ?? '',
+                fit: BoxFit.cover,
+              ),
             )
           ],
         ),
@@ -326,41 +339,38 @@ class ItemGridTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      //height: 270,
       decoration: BoxDecoration(
-        color: Color.fromARGB(46, 64, 86, 110),
+        color: const Color.fromARGB(46, 64, 86, 110),
         border: Border.all(width: .1, color: Colors.white),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
+                alignment: Alignment.center,
                 children: [
                   Image.asset(gridStore2.image ?? ''),
                   Positioned(
-                    top: 10,
-                    right: 7,
-                    child: Container(
-                      height: 15,
-                      width: 25,
-                      decoration: BoxDecoration(
-                        color: Color(0xff313849),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '1200',
-                          style: TextStyle(color: Colors.white, fontSize: 7),
-                        ),
-                      ),
+                    top: -2,
+                    right: -4,
+                    child: Image.asset('assets/images/Buttons.png'),
+                  ),
+                  Positioned(
+                     top:10,
+                    right: 16,
+                    child: Text(
+                      '1200',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ],
               ),
+
               const SizedBox(
                 height: 10,
               ),
@@ -385,6 +395,7 @@ class ItemGridTwo extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
+              //SizedBox(height: 10,)
             ]),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sheet/home.dart';
+import 'package:flutter_sheet/my_bottom_bar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,6 +13,7 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +55,14 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: [
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: emailController,
                     validator: (data) {
                       final regex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
                       if (data!.isEmpty) {
                         return 'this field is required';
-                      } else if (!regex.hasMatch(data)) {
+                      }
+                      if (!regex.hasMatch(data)) {
                         return 'your email is not valid';
                       }
                       return null;
@@ -96,15 +100,20 @@ class _LoginState extends State<Login> {
                     height: 20,
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: passController,
                     validator: (pass) {
-                      //final regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                      final regex = RegExp(
+                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
                       if (pass!.isEmpty) {
                         return 'this field is required';
                       }
+                      if (!regex.hasMatch(pass)) {
+                        return "invalid password";
+                      }
 
-                      else if(pass.length <8){
-                       return 'your password is less than 8 character';
+                      if (pass.length < 8) {
+                        return 'your password is less than 8 character';
                       }
                       return null;
                     },
@@ -113,9 +122,18 @@ class _LoginState extends State<Login> {
                       hintStyle: const TextStyle(
                         color: Colors.grey,
                       ),
-                      suffixIcon: const Icon(
-                        Icons.remove_red_eye_sharp,
-                        color: Color(0xff7B61FF),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Color(0xff7B61FF),
+                        ),
                       ),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -140,20 +158,32 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     enabled: true,
+                    obscureText: !_passwordVisible,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        textAlign: TextAlign.start,
-                        'Remember Me ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300),
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.check_box_rounded,
+                            color: Color(0xff7B61FF),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            textAlign: TextAlign.start,
+                            'Remember Me ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
                       ),
                       Text(
                         textAlign: TextAlign.start,
@@ -180,7 +210,7 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()),
+                                builder: (context) => const BottomBar()),
                           );
                         }
                       },
@@ -243,7 +273,7 @@ class _LoginState extends State<Login> {
                   height: 90,
                   width: 90,
                   decoration: BoxDecoration(
-                      color: Color(0xff2B3744),
+                      color: const Color(0xff2B3744),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.white, width: .1)),
                   child: Image.asset('assets/images/Google-logo.png'),
@@ -273,9 +303,9 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 25,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   textAlign: TextAlign.start,
                   'New User?  ',

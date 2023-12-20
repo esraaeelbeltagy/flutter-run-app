@@ -30,16 +30,21 @@ class AddAddress extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 13,
-                          color: Colors.white,
+                    InkWell(
+                      onTap: (){
+                          Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Center(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 10,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -52,7 +57,7 @@ class AddAddress extends StatelessWidget {
                         'Address',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

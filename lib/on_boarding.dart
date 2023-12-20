@@ -17,7 +17,10 @@ class OnBoarding extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back)),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         backgroundColor: const Color(0xff28333F),
         elevation: 0,
         actions: [
@@ -25,13 +28,16 @@ class OnBoarding extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const Login()),
               );
             },
-            child:const  Center(
+            child: const Center(
                 child: Text(
               'skip',
-              style: TextStyle(fontSize: 15),
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
             )),
           ),
           const SizedBox(
@@ -46,7 +52,7 @@ class OnBoarding extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 45,
+                height: 35,
               ),
               Image.asset('assets/images/on-boarding.png'),
               const SizedBox(
@@ -103,9 +109,9 @@ class OnBoarding extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             'Next',
                             style: TextStyle(
@@ -120,6 +126,7 @@ class OnBoarding extends StatelessWidget {
                           Icon(
                             Icons.arrow_forward,
                             size: 20,
+                            color: Colors.white,
                           )
                         ],
                       ),
@@ -157,6 +164,7 @@ class OnBoarding extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 10,),
             ]),
       ),
     );

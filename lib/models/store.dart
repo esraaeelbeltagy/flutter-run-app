@@ -133,15 +133,15 @@ List<GridStore1> lista3 = [
     text: 'UA',
   ),
   GridStore1(
-    image: 'assets/images/store/puma.png',
+    image: 'assets/images/store/no.png',
     text: 'Asics',
   ),
   GridStore1(
-    image: 'assets/images/store/puma.png',
+    image: 'assets/images/store/no.png',
     text: 'Reebok',
   ),
   GridStore1(
-    image: 'assets/images/store/puma.png',
+    image: 'assets/images/store/no.png',
     text: 'See ALL',
   ),
 ];

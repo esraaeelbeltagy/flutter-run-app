@@ -12,11 +12,11 @@ class Verfiy extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xff28333F),
-        leading:  IconButton(
-          onPressed: (){
-             Navigator.pop(context);
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back , color: Colors.white,),
         ),
       ),
       body: Column(children: [
@@ -31,8 +31,8 @@ class Verfiy extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Container(
             width: double.infinity,
-            child: Column(
-              children: const [
+            child: const Column(
+              children: [
                 SizedBox(
                   height: 30,
                 ),
@@ -61,7 +61,7 @@ class Verfiy extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Padding(
@@ -115,7 +115,7 @@ class Verfiy extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 100,
+          height: 75,
         ),
         Container(
           width: 330,
@@ -124,7 +124,62 @@ class Verfiy extends StatelessWidget {
               color: const Color(0xff7B61FF),
               borderRadius: BorderRadius.circular(25)),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      backgroundColor: const Color(0xff28333f),
+                      icon: Center(
+                        child: Image.asset('assets/images/profile-tick.png'),
+                      ),
+                      title: const Text(
+                        'Account Updated',
+                        textAlign: TextAlign.center,
+                      ),
+                      titleTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      content: const Text(
+                        'Your account details have been successfully changed',
+                        textAlign: TextAlign.center,
+                      ),
+                      contentTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w300,
+                      ),
+                      actions: [
+                        Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xff7B61FF),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: const Text(
+                                'Ok',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                      // contentPadding: EdgeInsets.all(5),
+                    );
+                  });
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff7B61FF),
               shape: RoundedRectangleBorder(
